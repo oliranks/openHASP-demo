@@ -1,3 +1,4 @@
+
 import java.lang.Integer
 import java.lang.NumberFormatException
 
@@ -178,7 +179,69 @@ rule "HASP_DEMO CHANNEL TRIGGERED"
                             }
                         }
                     }
+/* MOODLIGHT VIA COLORPICKER */
+                    case '2':   // Colorpicker Button ID
+                        switch(eventbutton)
+                        {
+                            case '2':   // Colorpicker Button ID
+                            {
+                                if(jsonkey == "event" && jsonvalue == "UP")
+                                {
+                                    var colorpicker = receivedEvent.toString.split('"').get(7)
+                                    var moodlight = '{"state":"on","brightness":255,"color":"' + colorpicker + '"}'
+                                    openHASP_Plate_Command_JSON.sendCommand("['moodlight " + moodlight + "']")
+                                }
+                            }
+                        }
                 }
             }
         }
-    end
+end
+
+
+/* BACKLIGHT DIM ON IDLE */
+rule "openHASP Display Backlight DIM on idle, return to Page 1 and Screensaver"
+    when
+        Item openHASP_Plate_Idle received update short
+    then
+        var idleday = '{"state":"on","brightness":10}'
+        var idlenight = '{"page":0,"id":99,"obj":"obj","x":0,"y":0,"w":240,"h":320,"radius":0,"hidden":0,"bg_grad_dir":0,"bg_color":"black"}'
+        var Number hour = now.getHour	
+            if ((hour >= 0)  || (hour <= 6)) {
+                openHASP_Plate_Page_Current.sendCommand("1")   
+                openHASP_Plate_Command_JSON.sendCommand("['backlight " + idleday +"']")
+            }
+            else    {
+                openHASP_Plate_Page_Current.sendCommand("1")       
+                openHASP_Plate_Command_JSON.sendCommand("['" + idlenight +"']")
+                openHASP_Plate_Command_JSON.sendCommand("['backlight off']")
+            }
+end
+
+rule "openHASP Display Backlight DIM off"
+    when
+        Item openHASP_Plate_Idle received update off
+    then
+        var idleoff = '{"state":"on","brightness":255}'
+        var Number hour = now.getHour
+            if ((hour >= 0)  || (hour <= 6)) {
+                openHASP_Plate_Command_JSON.sendCommand("['backlight " + idleoff +"']")
+            }
+            else    {
+                openHASP_Plate_Command_JSON.sendCommand("['p0b99.hidden=1','p0b99.delete=']")
+                openHASP_Plate_Command_JSON.sendCommand("['backlight " + idleoff +"']")
+            }
+end
+
+/* TEMPERATURE UPDATE */
+rule "openHASP Temperature Update"
+when
+    Item localCurrentTemperature received update or
+    Item openHASP_Plate_Page_Current received update 1 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    {
+        openHASP_Plate_Command_JSON.sendCommand("['p1b2.value_str=" + localCurrentTemperature.state.format("%.1f") + "']")
+    }
+end
