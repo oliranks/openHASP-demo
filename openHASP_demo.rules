@@ -1,118 +1,12 @@
+var Timer timermoodoff = null
 
-import java.lang.Integer
-import java.lang.NumberFormatException
+/* CHANNEL TRIGGERED */
 
-val Jaffa_Sunrise = newArrayList("#FFAC00","#DC5C05","#C7BAA7","#978B7D","#0A0006")
-rule "HASP_DEMO Setup"
+rule "openHASP Bad CHANNEL TRIGGERED"
     when
-        Item HASP_demo_Plate_Refresh received command ON or 
-        Item HASP_demo_Plate_LWT received update ON
+        Channel "mqtt:broker:openHASPBroker:openHASP_Plate_State_Event" triggered
     then
-        var object_Array = newArrayList(
-            "page=0;obj=btn;id=1;x=5;y=257;w=73;h=58;bg_color=" + Jaffa_Sunrise.get(4) + ";border_width=0;text=\\uE04D;text_color=" + Jaffa_Sunrise.get(3) + ";text_font=28;action=prev",
-            "page=0;obj=btn;id=2;x=83;y=257;w=73;h=58;bg_color=" + Jaffa_Sunrise.get(4) + ";border_width=0;text=\\uE2DC;text_color=" + Jaffa_Sunrise.get(3) + ";text_font=28;action=back",
-            "page=0;obj=btn;id=3;x=161;y=257;w=73;h=58;bg_color=" + Jaffa_Sunrise.get(4) + ";border_width=0;text=\\uE054;text_color=" + Jaffa_Sunrise.get(3) + ";text_font=28;action=next",
-            "page=1;obj=btn;id=1;x=5;y=5;w=230;h=58;bg_color=" + Jaffa_Sunrise.get(4) + ";border_color=" + Jaffa_Sunrise.get(0) + ";border_width=2;radius=10;text=Lights On;value_ofs_x=-85;value_font=28;value_str=\\uE6E8;value_color=" + Jaffa_Sunrise.get(2) + ";text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=1;obj=btn;id=2;x=5;y=68;w=230;h=58;bg_color=" + Jaffa_Sunrise.get(4) + ";border_color=" + Jaffa_Sunrise.get(0) + ";border_width=2;radius=10;text=Daylight;value_ofs_x=-85;value_font=28;value_str=\\uE599;value_color=" + Jaffa_Sunrise.get(2) + ";text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=1;obj=btn;id=3;x=5;y=131;w=230;h=58;bg_color=" + Jaffa_Sunrise.get(4) + ";border_color=" + Jaffa_Sunrise.get(0) + ";border_width=2;radius=10;text=Night;value_ofs_x=-85;value_font=28;value_str=\\uE594;value_color=" + Jaffa_Sunrise.get(2) + ";text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=1;obj=btn;id=4;x=5;y=194;w=230;h=58;bg_color=" + Jaffa_Sunrise.get(4) + ";border_color=" + Jaffa_Sunrise.get(0) + ";border_width=2;radius=10;text=Lights Off;value_ofs_x=-85;value_font=28;value_str=\\uE335;value_color=" + Jaffa_Sunrise.get(2) + ";text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=1;id=0;prev=3",
-            "page=2;obj=label;id=1;x=5;y=5;w=230;h=30;text=Kitchen Dimmer;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=2;obj=label;id=2;x=5;y=80;w=230;h=30;text=Dining Dimmer;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=2;obj=label;id=3;x=5;y=165;w=230;h=30;text=Front Blinds;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=2;obj=slider;id=4;x=20;y=40;w=200;h=30;bg_color=" + Jaffa_Sunrise.get(2) + ";radius=15;radius1=15;radius2=20;text_font=1;val=80;bg_color1=" + Jaffa_Sunrise.get(0) + ";bg_color2=" + Jaffa_Sunrise.get(1),
-            "page=2;obj=slider;id=5;x=20;y=120;w=200;h=30;bg_color=" + Jaffa_Sunrise.get(2) + ";radius=15;radius1=15;radius2=20;text_font=1;val=65;bg_color1=" + Jaffa_Sunrise.get(0) + ";bg_color2=" + Jaffa_Sunrise.get(1),
-            "page=2;obj=slider;id=6;x=20;y=205;w=200;h=30;bg_color=" + Jaffa_Sunrise.get(2) + ";radius=15;radius1=15;radius2=20;text_font=1;val=25;bg_color1=" + Jaffa_Sunrise.get(0) + ";bg_color2=" + Jaffa_Sunrise.get(1),
-            "page=3;obj=label;id=1;x=42;y=10;w=236;h=30;text=Gold;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=3;obj=label;id=2;x=42;y=60;mode=loop;w=236;h=30;text=Chet Faker;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=3;obj=btn;id=3;x=2;y=140;w=76;h=61;bg_color=" + Jaffa_Sunrise.get(4) + ";border_color=" + Jaffa_Sunrise.get(0) + ";border_width=2;radius=10;text=\\uE4AE;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=3;obj=btn;id=4;x=82;y=140;w=76;h=61;bg_color=" + Jaffa_Sunrise.get(4) + ";border_color=" + Jaffa_Sunrise.get(0) + ";border_width=2;radius=10;text=\\uE3E4;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=3;obj=btn;id=5;x=162;y=140;w=76;h=61;bg_color=" + Jaffa_Sunrise.get(4) + ";border_color=" + Jaffa_Sunrise.get(0) + ";border_width=2;radius=10;text=\\uE4AD;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=28",
-            "page=3;obj=bar;id=6;x=2;y=105;w=236;h=20;bg_color=" + Jaffa_Sunrise.get(2) + ";radius=15;radius1=15;radius2=15;text_font=1;val=65;bg_color1=" + Jaffa_Sunrise.get(0),
-            "page=3;obj=slider;id=7;x=35;y=220;w=170;h=30;bg_color=" + Jaffa_Sunrise.get(2) + ";radius=15;radius1=15;radius2=20;text_font=1;val=30;bg_color1=" + Jaffa_Sunrise.get(0) + ";bg_color2=" + Jaffa_Sunrise.get(1),
-            "page=3;obj=label;id=8;x=2;y=2;w=40;h=61;text=\\uE75A;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=22",
-            "page=3;obj=label;id=9;x=10;y=51;w=36;h=61;text=\\uE004;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=22",
-            "page=3;obj=label;id=10;x=5;y=224;w=25;h=40;text=\\uE75F;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=22",
-            "page=3;obj=label;id=11;x=210;y=224;w=25;h=40;text=\\uE57E;text_color=" + Jaffa_Sunrise.get(2) + ";text_font=22",
-            "page=3;id=0;next=1"
-        )
-
-        val Number LimitDeviceJsonl = 500
-        val Number LimitObjectJsonl = 230
-        var Number StartSizeObjectJsonl
-        var Number currentID
-        var Number currentPage
-
-        var String jsonlString = ""
-        var String objectAttribute
-        var z = -1
-        var y = -1
-        var object_Count = (object_Array.size as Number)
-        var Number attributeCount = 0
-        var Number pageToClear = 999
-        val String bg_color = Jaffa_Sunrise.get(4)
-
-        logWarn("openHASP", "Objects=" + object_Count)
-        while ((z=z+1) <= object_Count -1) {
-            attributeCount = (object_Array.get(z).split(";").length as Number)
-            logWarn("openHASP", "Attributes=" + attributeCount)
-            StartSizeObjectJsonl = jsonlString.length()
-            jsonlString += "{"
-            y = -1
-            while ((y=y+1) <= attributeCount -1) {
-                objectAttribute = object_Array.get(z).split(";").get(y)
-                logWarn("openHASP", "Item=" + (y + 1)  + "/" + attributeCount + " value=[" + objectAttribute + "]")
-                if(objectAttribute.split("=").get(0) == 'page') { currentPage = Integer.parseInt(objectAttribute.split("=").get(1)) }
-                if(objectAttribute.split("=").get(0) == 'id') { currentID = Integer.parseInt(objectAttribute.split("=").get(1)) }
-
-                // Send Clearpage and set bg color when refreshing the lcd
-                if (pageToClear != currentPage) { 
-                    HASP_demo_Plate_Command_CLEARPAGE.sendCommand(currentPage)
-                    HASP_demo_Plate_Command_JSON.sendCommand("['p[" + currentPage + "].b[0].bg_color=" + bg_color + "']")
-                    logWarn("openHASP", "ClearPage=" + currentPage + "]")
-                    pageToClear = currentPage
-                }
-
-                jsonlString += "\"" + objectAttribute.split("=").get(0) + "\":" 
-                try {
-                    val int num = Integer.parseInt(objectAttribute.split("=").get(1))
-                    jsonlString += num.toString
-                } catch (NumberFormatException e) {
-                    jsonlString += "\"" + objectAttribute.split("=").get(1) + "\"" 
-                }
-
-                if (LimitObjectJsonl < (jsonlString.length() - StartSizeObjectJsonl))
-                {
-                    jsonlString += "}\n"
-                    StartSizeObjectJsonl = jsonlString.length()
-                    jsonlString += "{\"page\":" + currentPage + ",\"id\":" + currentID
-                }
-                if (y < attributeCount -1) {
-                    jsonlString += "," 
-                }
-            }
-            jsonlString += "}\n" 
-
-            logWarn("openHASP", "JSONL Size=" + jsonlString.length().toString)
-            if (LimitDeviceJsonl < jsonlString.length()) {
-                logWarn("openHASP", "JSONL=" + jsonlString)
-                HASP_demo_Plate_Command_JSONL.sendCommand(jsonlString)
-                jsonlString = ""
-            }
-
-        }
-        if(jsonlString.length() > 0) {
-            logWarn("openHASP", "JSONL=" + jsonlString)
-            HASP_demo_Plate_Command_JSONL.sendCommand(jsonlString)
-        }
-
-    end
-/**/
-rule "HASP_DEMO CHANNEL TRIGGERED"
-    when
-        Channel "mqtt:broker:openHASPBroker:HASP_demo_Plate_State_Event" triggered
-    then
-        logInfo("HASP_channel.rules", " Channel triggered: {} ",  receivedEvent)
+        logInfo("openHASP_channel.rules", " Channel triggered: {} ",  receivedEvent)
 
         var topic = receivedEvent.toString.split("#").get(0)
         var payload = receivedEvent.substring(topic.length+1,receivedEvent.length)
@@ -120,38 +14,49 @@ rule "HASP_DEMO CHANNEL TRIGGERED"
         var jsonkey = transform("JS","json_demo_key.js",payload)
         var jsonvalue = transform("JSONPATH", "$." + jsonkey, payload).toString.toUpperCase
 
-        logInfo("HASP_channel.rules", " Topic: {} [{}] Payload: {}",  topic, topicvalue , payload)
+        logInfo("openHASP_channel.rules", " Topic: {} [{}] Payload: {}",  topic, topicvalue , payload)
 
         switch (topicvalue)
         {
             case 'idle':
             {
-                logInfo("HASP_channel.rules", " Idle event: {}",  payload)
+                logInfo("openHASP_channel.rules", " Idle event: {}",  payload)
             }
             case 'statusupdate':
             {
-                logInfo("HASP_channel.rules", " Statusupdate: {}",  payload)
+                logInfo("openHASP_channel.rules", " Statusupdate: {}",  payload)
             }
             case 'dim':
             {
-                logInfo("HASP_channel.rules", " Dim: {}",  payload)
+                logInfo("openHASP_channel.rules", " Dim: {}",  payload)
             }
             case 'page':
             {
-                logInfo("HASP_channel.rules", " Page: {}",  payload)
-                postUpdate(HASP_test_Plate_Page_Current, payload)
+                logInfo("openHASP_channel.rules", " Page: {}",  payload)
+                postUpdate(openHASP_Plate_Page_Current, payload)
             }
             case 'input':
             {
-                logInfo("HASP_channel.rules", " Input: {}",  payload)
+                logInfo("openHASP_channel.rules", " Input: {}",  payload)
             }
-
+            case 'sensors':
+            {
+                logInfo("openHASP_channel.rules", " Sensors: {}",  payload)
+            }
+            case 'backlight':
+            {
+                logInfo("openHASP_channel.rules", " Backlight: {}",  payload)
+            }
+            case 'moodlight':
+            {
+                logInfo("openHASP_channel.rules", " Moodlight: {}",  payload)
+            }
             default:
             {
                 var eventpage = topicvalue.split("b").get(0).split("p").get(1)
                 var eventbutton = topicvalue.split("b").get(1)
 
-                logInfo("HASP_channel.rules", " Page: {} Button: {} Key: {} Value: {}",  eventpage, eventbutton, jsonkey, jsonvalue)
+                logInfo("openHASP_channel.rules", " Page: {} Button: {} Key: {} Value: {}",  eventpage, eventbutton, jsonkey, jsonvalue)
 
                 switch(eventpage)
                 {
@@ -159,28 +64,56 @@ rule "HASP_DEMO CHANNEL TRIGGERED"
                     {
                         switch(eventbutton)
                         {
-                            case '1':
+                            case '11':
                             {
                                 if(jsonkey == "event" && jsonvalue == "UP")
                                 {
                                     var String stat
-                                    var String icon
-                                    if (HASP_demo_Plate_P1B1.state == null || HASP_demo_Plate_P1B1.state == OFF){
-                                        HASP_demo_Plate_P1B1.postUpdate(ON)
-                                        stat = "On"
-                                        icon = "\\uE6E8"
+                                    if (onkyo_zone2_Power.state == null || onkyo_zone2_Power.state == OFF){
+                                        onkyo_zone2_Power.sendCommand(ON)
+                                        stat = "ON"
                                     } else {
-                                        HASP_demo_Plate_P1B1.postUpdate(OFF)
-                                        stat = "Off"
-                                        icon = "\\uE335"
+                                        onkyo_zone2_Power.sendCommand(OFF)
+                                        stat = "OFF"
                                     }
-                                    HASP_demo_Plate_Command_JSON.sendCommand("['p1b1.text=Lights " + stat + "','p1b1.value_str=" + icon + "']")
+                                    openHASP_Plate_Command_JSON.sendCommand("[''p1b10.value_str=" + stat + "']")
+                                }
+                            }
+                            case '13':
+                            {
+                                if(jsonkey == "event" && jsonvalue == "UP")
+                                {
+                                    // var String stat
+                                    if (Virtual_Input.state == null || Virtual_Input.state == 1){
+                                        Virtual_Input.sendCommand(36)
+                                        // VirtualSource_Zone2.sendCommand(ON)
+                                        // stat = "Tuner"
+                                    } else {
+                                        Virtual_Input.sendCommand(1)
+                                        // stat = "PC"
+                                    }
+                                    // openHASP_Plate_Command_JSON.sendCommand("['p1b10.text=Source " + stat + "']")
+                                }
+                            }
+                            case '15':
+                            {
+                                if(jsonkey == "event" && jsonvalue == "UP")
+                                {
+                                    VirtualleiserOG_Zone2.sendCommand(ON)
+                                    openHASP_Plate_Command_JSON.sendCommand("['p1b14.value_str=" + onkyo_zone2_Volume.state + "']")
+                                }
+                            }
+                            case '16':
+                            {
+                                if(jsonkey == "event" && jsonvalue == "UP")
+                                {
+                                    VirtuallauterOG_Zone2.sendCommand(ON)
+                                    openHASP_Plate_Command_JSON.sendCommand("['p1b14.value_str=" + onkyo_zone2_Volume.state + "']")
                                 }
                             }
                         }
                     }
-/* MOODLIGHT VIA COLORPICKER */
-                    case '2':   // Colorpicker Button ID
+                    case '3':   // Colorpicker Button ID
                         switch(eventbutton)
                         {
                             case '2':   // Colorpicker Button ID
@@ -192,14 +125,290 @@ rule "HASP_DEMO CHANNEL TRIGGERED"
                                     openHASP_Plate_Command_JSON.sendCommand("['moodlight " + moodlight + "']")
                                 }
                             }
+                            case '3':
+                            {
+                                if(jsonkey == "event" && jsonvalue == "UP")
+                                {
+                                    openHASP_Plate_Moodlight_OFF.sendCommand(ON) 
+                                }
+                            }
                         }
                 }
+                
             }
         }
+    end
+
+/* PAGE 1 */
+
+rule "openHASP Bad Page 1 Temperature Update"
+when
+    Item og_temp_bad_ist_aqara received update or
+    Item openHASP_Plate_Page_Current received update 1 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    {
+        openHASP_Plate_Command_JSON.sendCommand("['p1b4.value_str=" + og_temp_bad_ist_aqara.state.format("%.1f") + "','p1b4.val=" + og_temp_bad_ist_aqara.state.format("%.1f") + "']")
+    }
 end
 
+rule "openHASP Bad Page 1 Humidity Update"
+when
+    Item og_humid_bad_ist received update or
+    Item openHASP_Plate_Page_Current received update 1 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    {
+        openHASP_Plate_Command_JSON.sendCommand("['p1b5.value_str=" + og_humid_bad_ist.state.format("%.1f") + "','p1b5.val=" + og_humid_bad_ist.state.format("%.1f") + "']")
+    }
+end
 
-/* BACKLIGHT DIM ON IDLE */
+rule "openHASP Bad Page 1 Receiver Update"
+when
+    Item onkyo_zone2_Power received update or
+    Item openHASP_Plate_Page_Current received update 1 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    {
+            if (onkyo_zone2_Power.state == ON) 
+                {
+                    openHASP_Plate_Command_JSON.sendCommand("['p1b11.val=" + 1 + "','p1b10.value_str=ON']")
+                }
+            else
+                {
+                    openHASP_Plate_Command_JSON.sendCommand("['p1b11.val=" + 0 + "','p1b10.value_str=OFF']")
+                }
+    }
+end
+
+rule "openHASP Bad Page 1 Source Update"
+when
+    Item onkyo_zone2_Input received update or
+    Item openHASP_Plate_Page_Current received update 1 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    {
+            if (onkyo_zone2_Input.state == 36) 
+                {
+                    openHASP_Plate_Command_JSON.sendCommand("['p1b13.val=0','p1b12.value_str=TUNER']")
+                }
+            else
+                {
+                    openHASP_Plate_Command_JSON.sendCommand("['p1b13.val=1','p1b12.value_str=PC']")
+                }
+    }
+end
+
+rule "openHASP Bad Page 1 Volume Update"
+when
+    Item onkyo_zone2_Volume received update or
+    Item openHASP_Plate_Page_Current received update 1 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    {
+        openHASP_Plate_Command_JSON.sendCommand("['p1b14.value_str=" + onkyo_zone2_Volume.state + "']")
+    }
+end
+
+rule "openHASP Bad Page 1 Weather Update"
+when
+    Item localCurrentCondition received update or
+    Item openHASP_Plate_Page_Current received update 1 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    {
+        openHASP_Plate_Command_JSON.sendCommand("['p1b6.text=Wetter: " + localCurrentCondition.state + "']")
+    }
+end
+
+/* PAGE 2 - WEATHER UPDATE */
+
+rule "openHASP Weather Page Update"
+    when
+        Item openHASP_Plate_Page_Current received update 2 or
+        Item localCurrentConditionIcon received update or
+        Item localTodayTimestamp received update or
+        Item localCurrentTemperature received update or
+        Item localCurrentCondition received update or
+        Item localTodayDayTemperature received update or
+        Item localTodayConditionIcon received update or
+        Item localTomorrowDayTemperature received update or
+        Item localTomorrowConditionIcon received update or
+        Item localDay2DayTemperature received update or
+        Item localDay2ConditionIcon received update or
+        Item localTodayMinTemperature received update or
+        Item localTodayMaxTemperature received update or
+        Item localTomorrowMinTemperature received update or
+        Item localTomorrowMaxTemperature received update or
+        Item localDay2MinTemperature received update or
+        Item localDay2MaxTemperature received update or
+        Item openHASP_Plate_Page_Current received update 1 or
+        Item openHASP_Plate_LWT received update
+    then
+        if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
+            {
+                openHASP_Plate_Command_JSON.sendCommand("['p2b15.text=" + localTodayTimestamp.state.format("%1$td.%1$tm.%1$tY") + "','p2b16.text=" + localCurrentTemperature.state.format("[%.1f °C]") + "','p2b17.text=" + localCurrentHumidity.state + " rLf','p2b18.text=" + localCurrentCondition.state + "','p2b22.text=" + localTodayDayTemperature.state.format("%.1f") + "','p2b32.text=" + localTomorrowDayTemperature.state.format("%.1f") + "','p2b42.text=" + localDay2DayTemperature.state.format("%.1f") + "','p2b62.text=" + localTodayMinTemperature.state.format("%.1f") + "','p2b63.text=" + localTodayMaxTemperature.state.format("%.1f") + "','p2b72.text=" + localTomorrowMinTemperature.state.format("%.1f") + "','p2b73.text=" + localTomorrowMaxTemperature.state.format("%.1f") + "','p2b82.text=" + localDay2MinTemperature.state.format("%.1f") + "','p2b83.text=" + localDay2MaxTemperature.state.format("%.1f") + "']")
+            }
+end
+
+rule "openHASP weather_icon current Update"
+when
+    Item openHASP_weather_icon_current received update or
+    Item openHASP_Plate_Page_Current received update 2
+then
+    if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
+    {
+        val transform = transform("MAP", "openhasp_weather.map", openHASP_weather_icon_current.state.toString)
+        var jsonString ='["p[2].b[14].src=/littlefs/w-128-' + transform + '.png"]'
+        openHASP_Plate_Command_JSON.sendCommand(jsonString)
+    }
+end
+
+rule "openHASP weather_icon today Update"
+when
+    Item openHASP_weather_icon_today received update or
+    Item openHASP_Plate_Page_Current received update 2
+then
+    if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
+    {
+        val transform = transform("MAP", "openhasp_weather.map", openHASP_weather_icon_today.state.toString)
+        var jsonString ='["p[2].b[23].src=/littlefs/w-32-' + transform + '.png"]'
+        openHASP_Plate_Command_JSON.sendCommand(jsonString)
+    }
+end
+
+rule "openHASP weather_icon tomorrow Update"
+when
+    Item openHASP_weather_icon_tomorrow received update or
+    Item openHASP_Plate_Page_Current received update 2
+then
+    if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
+    {
+        val transform = transform("MAP", "openhasp_weather.map", openHASP_weather_icon_tomorrow.state.toString)
+        var jsonString ='["p[2].b[33].src=/littlefs/w-32-' + transform + '.png"]'
+        openHASP_Plate_Command_JSON.sendCommand(jsonString)
+    }
+end
+
+rule "openHASP weather_icon day2 Update"
+when
+    Item openHASP_weather_icon_day2 received update or
+    Item openHASP_Plate_Page_Current received update 2
+then
+    if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
+    {
+        val transform = transform("MAP", "openhasp_weather.map", openHASP_weather_icon_day2.state.toString)
+        var jsonString ='["p[2].b[43].src=/littlefs/w-32-' + transform + '.png"]'
+        openHASP_Plate_Command_JSON.sendCommand(jsonString)
+    }
+end
+
+/* PAGE 3 - MOODLIGHT OFF */
+
+rule "openHASP Display Moodlight OFF"
+    when
+        Item openHASP_Plate_Moodlight_OFF received update ON
+    then
+        var moodoff = '{"state":"off"}'
+        openHASP_Plate_Command_JSON.sendCommand("['moodlight " + moodoff +"']")
+            timermoodoff = createTimer
+            (
+                now.plusSeconds(5), 
+                [|
+                    if (openHASP_Plate_Moodlight_OFF.state == ON) {
+                        openHASP_Plate_Moodlight_OFF.sendCommand(OFF) 
+                    }
+                ]
+            )
+end
+
+/* PAGE 4 - ESP32 STATUS */
+
+rule "openHASP Temperature Convert String to Item Number"
+  when
+    Item openHASP_Plate_Temperature_str changed
+ then
+    // use the transformation service to retrieve the value
+    val newValue = transform("REGEX", ".*=(\\d*.\\d*).*", openHASP_Plate_Temperature_str.state.toString)
+
+    // post the new value to the Number Item
+    openHASP_Plate_Temperature.postUpdate( newValue )
+ end
+
+rule "openHASP Page 2 ESP32 Temperatur Update"
+when
+    Item openHASP_Plate_Temperature received update or
+    Item openHASP_Plate_Page_Current received update 4 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 4)   //Only update page if you're on page 4 (avoid sending too many MQTT messages)
+    {
+        openHASP_Plate_Command_JSON.sendCommand("['p4b13.text=" + openHASP_Plate_Temperature.state + "°C']")
+    }
+end
+
+rule "openHASP Page 2 ESP32 Uptime Update"
+when
+    Item openHASP_Plate_Uptime received update or
+    Item openHASP_Plate_Page_Current received update 4 or
+    Item openHASP_Plate_LWT received update
+then
+    if (openHASP_Plate_Page_Current.state == 4)   //Only update page if you're on page 4 (avoid sending too many MQTT messages)
+    {
+        openHASP_Plate_Command_JSON.sendCommand("['p4b15.text=" + openHASP_Plate_Uptime.state + "']")
+    }
+end
+
+/* RSSI STATUS ICON */
+
+rule "openHASP Status RSSI Icon Update"
+when
+    Item openHASP_Plate_SignalStrength received update or
+    Item openHASP_Plate_Page_Current received update 1
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    {   
+        var green ='["p1b3.text_color=green"]'
+        var orange ='["p1b3.text_color=orange"]'
+        var red ='["p1b3.text_color=red"]'
+
+        if(openHASP_Plate_SignalStrength.state <= -50 || openHASP_Plate_SignalStrength.state >= -0)
+            {
+                openHASP_Plate_Command_JSON.sendCommand(green)
+            }
+        if(openHASP_Plate_SignalStrength.state <= -50 || openHASP_Plate_SignalStrength.state >= -80)
+            {
+                openHASP_Plate_Command_JSON.sendCommand(orange)
+            }
+        if(openHASP_Plate_SignalStrength.state <= -80)
+            {
+                openHASP_Plate_Command_JSON.sendCommand(red)
+            }
+    }
+end
+
+/* STATUS TIME UPDATE */
+
+rule "openHASP Status Time Update"
+when
+    Item openHASP_Date_Time received update or
+    Item openHASP_Plate_Page_Current received update 1
+then
+    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
+    // if (openHASP_Plate_Idle.state == 'off' && openHASP_Plate_Idle.state == 'short') //Only update if plate is in long idle status
+    {   
+        openHASP_Plate_Command_JSON.sendCommand("['p1b2.text=" + openHASP_Date_Time.state.format("%1$tH:%1$tM") + "']")
+    }
+end
+
+/* BACKLIGHT DIM AND STANDBY */
+
 rule "openHASP Display Backlight DIM on idle, return to Page 1 and Screensaver"
     when
         Item openHASP_Plate_Idle received update short
@@ -231,17 +440,4 @@ rule "openHASP Display Backlight DIM off"
                 openHASP_Plate_Command_JSON.sendCommand("['p0b99.hidden=1','p0b99.delete=']")
                 openHASP_Plate_Command_JSON.sendCommand("['backlight " + idleoff +"']")
             }
-end
-
-/* TEMPERATURE UPDATE */
-rule "openHASP Temperature Update"
-when
-    Item localCurrentTemperature received update or
-    Item openHASP_Plate_Page_Current received update 1 or
-    Item openHASP_Plate_LWT received update
-then
-    if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
-    {
-        openHASP_Plate_Command_JSON.sendCommand("['p1b2.value_str=" + localCurrentTemperature.state.format("%.1f") + "']")
-    }
 end
