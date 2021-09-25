@@ -16,3 +16,8 @@ Once the files are loaded into OpenHab, go to the webpage on your openHASP esp. 
 Restart the esp and the demo page should load automatically to your device.
 
 More information can be found on the [wiki](https://haswitchplate.github.io/openHASP-docs/) of openHASP.
+
+You need to have openweathermap and ntp binding installed.
+
+Weather Condition Icons are needed, else plate will end in rebootloop
+Download them from [here](https://haswitchplate.github.io/openHASP-docs/0.6.1/assets/users/openhasp-weathericons-day.zip), upload to plate, connect via telnet and run unzip /openhasp-weathericons-day.zip
