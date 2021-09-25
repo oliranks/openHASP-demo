@@ -19,5 +19,5 @@ More information can be found on the [wiki](https://haswitchplate.github.io/open
 
 You need to have openweathermap and ntp binding installed.
 
-Weather Condition Icons are needed, else plate will end in rebootloop
+Weather Condition Icons are needed, else plate will end in rebootloop.
 Download them from [here](https://haswitchplate.github.io/openHASP-docs/0.6.1/assets/users/openhasp-weathericons-day.zip), upload to plate, connect via telnet and run unzip /openhasp-weathericons-day.zip
