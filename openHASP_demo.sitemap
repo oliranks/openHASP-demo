@@ -1,39 +1,54 @@
-sitemap openHASP_demo label="openHASP Demo PLATE"
+sitemap openhasp label="openHASP Demo PLATE"
 {//
-    Frame visibility=[HASP_demo_Plate_NumPages<=4] {
-        Switch item=HASP_demo_Plate_Page_Current mappings=[1="1", 2="2", 3="3", 4="4"]
-    }
-
-    Frame visibility=[HASP_demo_Plate_NumPages>4]{
-        Switch item=HASP_demo_Plate_Page_Current mappings=[1="1", 2="2", 3="3", 4="4", 5="5", 6="6", 7="7", 8="8", 9="9", 10="10", 11="11", 12="12"]
-    }
 
     Frame{
-        Text item=HASP_demo_Plate_Page
-        Text item=HASP_demo_Plate_NumPages
-        Text item=HASP_demo_Plate_Idle
-        Text item=HASP_demo_Plate_Status
-        Text item=HASP_demo_Plate_ESPVersion
-        Text item=HASP_demo_Plate_ESPUptime icon="time"
-        Text item=HASP_demo_Plate_SSID icon="network"
-        Text item=HASP_demo_Plate_SignalStrength icon="qualityofservice"
-        Text item=HASP_demo_Plate_HaspIP
-        Text item=HASP_demo_Plate_HeapFree
-        Text item=HASP_demo_Plate_HeapFrag
-        Text item=HASP_demo_Plate_ESPCore
-        Text item=HASP_demo_Plate_ESPUpdate
-        Text item=HASP_demo_Plate_TftDriver
-        Text item=HASP_demo_Plate_TFTWidth
-        Text item=HASP_demo_Plate_TFTHeight
+        Group item=openHASP
+    }
+
+    Frame visibility=[openHASP_Plate_NumPages<=4] {
+        Switch item=openHASP_Plate_Page_Current mappings=[1="1", 2="2", 3="3", 4="4"]
+    }
+
+    Frame visibility=[openHASP_Plate_NumPages>4]{
+        Switch item=openHASP_Plate_Page_Current mappings=[1="1", 2="2", 3="3", 4="4", 5="5", 6="6", 7="7", 8="8", 9="9", 10="10", 11="11", 12="12"]
     }
 
     Frame{
-        Switch item=HASP_demo_Plate_Refresh
-        Switch item=HASP_demo_Plate_Reboot
+        Text item=openHASP_Plate_Page
+        Text item=openHASP_Plate_NumPages
+        Text item=openHASP_Plate_Idle
+        // Text item=openHASP_Plate_Status
+        Text item=openHASP_Plate_ESPVersion
+        Text item=openHASP_Plate_ESPUptime icon="time"
+        Text item=openHASP_Plate_SSID icon="network"
+        Text item=openHASP_Plate_SignalStrength icon="qualityofservice"
+        Text item=openHASP_Plate_HaspIP
+        Text item=openHASP_Plate_HeapFree
+        Text item=openHASP_Plate_HeapFrag
+        Text item=openHASP_Plate_ESPCore
+        Text item=openHASP_Plate_ESPUpdate
+        Text item=openHASP_Plate_TftDriver
+        Text item=openHASP_Plate_TFTWidth
+        Text item=openHASP_Plate_TFTHeight
+        Text item=openHASP_Plate_Time
+        Text item=openHASP_Plate_UptimeSec
+        Text item=openHASP_Plate_Uptime
+        Text item=openHASP_Plate_Temperature_str
+        Text item=openHASP_Plate_Temperature
+    }
+
+    Frame{
+        Switch item=openHASP_Plate_Refresh
+        Switch item=openHASP_Plate_Reboot
     }
     Frame{
-        Slider item=HASP_demo_Plate_Backlight_Brightness icon="heating-off" step=10
+        Slider item=openHASP_Plate_Backlight_Brightness icon="heating-off" step=10
     }
+
+    Frame{
+        Switch item=openHASP_Plate_P1B1
+    }
+
     Frame label="openHASP GUI" {
         Text label="Web GUI"{
             Webview url= "http://127.0.0.1/screenshot?" height=14
