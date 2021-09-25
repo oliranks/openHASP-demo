@@ -264,7 +264,7 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
     {
-        val transform = transform("MAP", "openhasp_weather.map", openHASP_weather_icon_current.state.toString)
+        val transform = transform("MAP", "openHASP_weather.map", openHASP_weather_icon_current.state.toString)
         var jsonString ='["p[2].b[14].src=/littlefs/w-128-' + transform + '.png"]'
         openHASP_Plate_Command_JSON.sendCommand(jsonString)
     }
@@ -277,7 +277,7 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
     {
-        val transform = transform("MAP", "openhasp_weather.map", openHASP_weather_icon_today.state.toString)
+        val transform = transform("MAP", "openHASP_weather.map", openHASP_weather_icon_today.state.toString)
         var jsonString ='["p[2].b[23].src=/littlefs/w-32-' + transform + '.png"]'
         openHASP_Plate_Command_JSON.sendCommand(jsonString)
     }
@@ -290,7 +290,7 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
     {
-        val transform = transform("MAP", "openhasp_weather.map", openHASP_weather_icon_tomorrow.state.toString)
+        val transform = transform("MAP", "openHASP_weather.map", openHASP_weather_icon_tomorrow.state.toString)
         var jsonString ='["p[2].b[33].src=/littlefs/w-32-' + transform + '.png"]'
         openHASP_Plate_Command_JSON.sendCommand(jsonString)
     }
@@ -303,7 +303,7 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 2)   //Only update page if you're on page 2 (avoid sending too many MQTT messages)
     {
-        val transform = transform("MAP", "openhasp_weather.map", openHASP_weather_icon_day2.state.toString)
+        val transform = transform("MAP", "openHASP_weather.map", openHASP_weather_icon_day2.state.toString)
         var jsonString ='["p[2].b[43].src=/littlefs/w-32-' + transform + '.png"]'
         openHASP_Plate_Command_JSON.sendCommand(jsonString)
     }
