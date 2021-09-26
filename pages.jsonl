@@ -1,21 +1,22 @@
 {"page":1,"comment":"---------- Page 1 ----------"}
-{"page":1,"id":0,"bg_color":"#FFFFFF","bg_grad_color":"#34495E","text_color":"#000000","radius":0,"border_side":0}
-{"page":1,"id":1,"obj":"btn","x":0,"y":0,"w":240,"h":30,"text":"HOME","value_font":22,"bg_color":"#34495E","bg_grad_color":"#29A6DE","bg_grad_dir":1,"text_color":"#FFFFFF","radius":0,"border_side":0}
-{"page":1,"id":2,"obj":"label","x":3,"y":5,"h":30,"w":62,"text":"00:00","align":0,"bg_color":"#34495E"}
-{"page":1,"id":3,"obj":"btn","x":210,"y":3,"w":25,"h":25,"text_font":"2","text":"\uE5A9","text_color":"gray","text_opa":98,"bg_opa":0,"border_width":0,"bg_color":"#34495E"}
-{"page":1,"id":4,"obj":"arc","x":5,"y":45,"w":140,"h":100,"max":40,"line_color1":"#ff0000","border_side":0,"type":0,"rotation":0,"start_angle":180,"end_angle":0,"start_angle1":180,"value_font":12,"value_ofs_x":-19,"value_ofs_y":-4,"bg_opa":0}
-{"page":1,"id":5,"obj":"arc","x":130,"y":45,"w":140,"h":100,"max":100,"line_color1":"#0000ff","border_side":0,"type":0,"start_angle":180,"end_angle":0,"start_angle1":180,"value_font":12,"value_color":"#000000","value_ofs_x":-19,"value_ofs_y":-4,"bg_opa":0}
-{"page":1,"id":6,"obj":"btn","x":0,"y":110,"w":240,"h":20,"val":0,"text":"Wetter: ","radius":0,"border_side":0}
-{"page":1,"id":7,"obj":"label","x":20,"y":35,"w":140,"text":"Temperatur"}
-{"page":1,"id":8,"obj":"label","x":140,"y":35,"w":140,"text":"Feuchtigkeit"}
-{"page":1,"id":9,"obj":"btn","x":0,"y":140,"w":240,"h":20,"text":"RECEIVER","bg_color":"#29A6DE","text_color":"#FFFFFF","radius":0,"border_side":0}
-{"page":1,"id":10,"obj":"label","x":20,"y":170,"w":140,"h":20,"value_ofs_x":30,"text":"Power"}
-{"page":1,"id":11,"obj":"switch","x":175,"y":170,"w":45,"h":20,"toggle":"TRUE"}
-{"page":1,"id":12,"obj":"label","x":20,"y":205,"w":140,"h":20,"value_ofs_x":30,"text":"Source"}
-{"page":1,"id":13,"obj":"switch","x":175,"y":205,"w":45,"h":20,"toggle":"TRUE"}
-{"page":1,"id":14,"obj":"label","x":20,"y":250,"w":200,"h":20,"text":"LautstĂ¤rke"}
-{"page":1,"id":15,"obj":"btn","x":140,"y":240,"w":45,"h":45,"border_color":"#29A6DE","border_width":2,"radius":10,"text":"\uE580","value_font":28,"value_str":"\uE580"}
-{"page":1,"id":16,"obj":"btn","x":190,"y":240,"w":45,"h":45,"border_color":"#29A6DE","border_width":2,"radius":10,"text":"\uE57E","value_font":28,"value_str":"\uE57E"}
+{"page":1,"id":1,"obj":"btn","x":0,"y":0,"w":240,"h":30,"text":"HOME","text_font":16,"bg_color":"#34495E","bg_grad_color":"#29A6DE","bg_grad_dir":1,"text_color":"#FFFFFF","radius":0,"border_side":0,"click":0}
+{"page":1,"id":2,"obj":"obj","x":5,"y":35,"w":230,"h":250,"click":0}
+{"page":1,"id":3,"obj":"tabview","x":0,"y":0,"w":240,"h":260,"parentid":2,"btn_pos":0,"bg_opa":0,"border_width":0}
+{"page":1,"id":4,"obj":"label","x":3,"y":5,"h":30,"w":62,"text":"00:00","text_color":"#ffffff","align":0,"bg_color":"#34495E"}
+{"page":1,"id":5,"obj":"btn","x":210,"y":3,"w":25,"h":25,"text_font":"2","text":"\uE5A9","text_color":"gray","bg_opa":0,"border_width":0,"bg_color":"#34495E"}
+{"page":1,"id":6,"obj":"arc","x":5,"y":45,"w":140,"h":100,"max":40,"line_color1":"#ff0000","border_side":0,"type":0,"rotation":0,"start_angle":180,"end_angle":0,"start_angle1":180,"value_font":12,"value_ofs_x":-19,"value_ofs_y":-4,"bg_opa":0}
+{"page":1,"id":7,"obj":"arc","x":130,"y":45,"w":140,"h":100,"max":100,"line_color1":"#0000ff","border_side":0,"type":0,"start_angle":180,"end_angle":0,"start_angle1":180,"value_font":12,"value_color":"#000000","value_ofs_x":-19,"value_ofs_y":-4,"bg_opa":0}
+{"page":1,"id":8,"obj":"btn","x":6,"y":112,"w":228,"h":20,"val":0,"text":"Wetter: ","radius":0,"border_side":0}
+{"page":1,"id":9,"obj":"label","x":20,"y":35,"w":140,"text":"Temperatur","text_font":22}
+{"page":1,"id":10,"obj":"label","x":140,"y":35,"w":140,"text":"Feuchtigkeit","text_font":22}
+{"page":1,"id":11,"obj":"btn","x":6,"y":140,"w":228,"h":20,"text":"RECEIVER","bg_color":"#29A6DE","text_color":"#FFFFFF","radius":0,"border_side":0}
+{"page":1,"id":12,"obj":"label","x":20,"y":170,"w":140,"h":20,"value_ofs_x":30,"text":"Power"}
+{"page":1,"id":13,"obj":"switch","x":175,"y":170,"w":45,"h":20,"toggle":"TRUE"}
+{"page":1,"id":14,"obj":"label","x":20,"y":205,"w":140,"h":20,"value_ofs_x":30,"text":"Source"}
+{"page":1,"id":15,"obj":"switch","x":175,"y":205,"w":45,"h":20,"toggle":"TRUE"}
+{"page":1,"id":16,"obj":"label","x":20,"y":250,"w":200,"h":20,"text":"LautstĂ¤rke"}
+{"page":1,"id":17,"obj":"btn","x":145,"y":240,"w":40,"h":40,"border_color":"gray","border_width":2,"radius":10,"text":"\uE580","value_font":28,"value_str":"\uE580"}
+{"page":1,"id":18,"obj":"btn","x":190,"y":240,"w":40,"h":40,"border_color":"gray","border_width":2,"radius":10,"text":"\uE57E","value_font":28,"value_str":"\uE57E"}
 
 {"page":2,"id":1,"obj":"btn","x":0,"y":0,"w":240,"h":30,"text":"WETTER","text_font":16,"bg_color":"#34495E","bg_grad_color":"#29A6DE","bg_grad_dir":1,"text_color":"#FFFFFF","radius":0,"border_side":0,"click":0}
 {"page":2,"id":2,"obj":"obj","x":5,"y":35,"w":230,"h":250,"click":0}
@@ -56,27 +57,29 @@
 {"page":2,"id":82,"obj":"label","x":124,"y":210,"w":40,"h":22,"align":"center","text":"00.0","parentid":12,"pad_top":-2,"text_font":24,"text_color":"Navy","click":0}
 {"page":2,"id":83,"obj":"label","x":172,"y":210,"w":40,"h":22,"align":"center","text":"00.0","parentid":12,"pad_top":-2,"text_font":24,"text_color":"Blush","click":0}
 
-{"page":3,"id":0,"bg_color":"#FFFFFF","bg_grad_color":"#34495E","text_color":"#000000","radius":0,"border_side":0}
-{"page":3,"id":1,"obj":"btn","x":0,"y":0,"w":240,"h":30,"text":"MOODLIGHT","value_font":22,"bg_color":"#34495E","bg_grad_color":"#29A6DE","bg_grad_dir":1,"text_color":"#FFFFFF","radius":0,"border_side":0}
-{"page":3,"id":2,"obj":"cpicker","x":20,"y":40,"w":200,"h":200}
-{"page":3,"id":3,"obj":"btn","x":25,"y":245,"w":190,"h":40,"bg_color":"#29A6DE","border_color":"#34495E","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"Aus","text_color":"#FFFFFF","text_font":22}
+{"page":3,"id":1,"obj":"btn","x":0,"y":0,"w":240,"h":30,"text":"MOODLIGHT","text_font":16,"bg_color":"#34495E","bg_grad_color":"#29A6DE","bg_grad_dir":1,"text_color":"#FFFFFF","radius":0,"border_side":0,"click":0}
+{"page":3,"id":2,"obj":"obj","x":5,"y":35,"w":230,"h":250,"click":0}
+{"page":3,"id":3,"obj":"tabview","x":0,"y":0,"w":240,"h":260,"parentid":2,"btn_pos":0,"bg_opa":0,"border_width":0}
+{"page":3,"id":4,"obj":"cpicker","x":30,"y":40,"w":180,"h":180}
+{"page":3,"id":5,"obj":"btn","x":75,"y":235,"w":100,"h":40,"bg_color":"#29A6DE","border_color":"#34495E","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"Aus","text_color":"#FFFFFF","text_font":22}
 
-{"page":4,"id":0,"bg_color":"#FFFFFF","bg_grad_color":"#34495E","text_color":"#000000","radius":0,"border_side":0}
-{"page":4,"id":1,"obj":"btn","x":0,"y":0,"w":240,"h":30,"text":"STATUS","value_font":22,"bg_color":"#34495E","bg_grad_color":"#29A6DE","bg_grad_dir":1,"text_color":"#FFFFFF","radius":0,"border_side":0}
-{"page":4,"id":2,"obj":"label","x":20,"y":40,"w":100,"h":20,"text":"IP:"}
-{"page":4,"id":3,"obj":"label","x":120,"y":40,"w":100,"h":20,"text":"%ip%"}
-{"page":4,"id":4,"obj":"label","x":20,"y":65,"w":100,"h":20,"text":"Hostname:"}
-{"page":4,"id":5,"obj":"label","x":120,"y":65,"w":100,"h":20,"text":"%hostname%"}
-{"page":4,"id":6,"obj":"label","x":20,"y":90,"w":100,"h":20,"text":"SSID:"}
-{"page":4,"id":7,"obj":"label","x":120,"y":90,"w":100,"h":20,"text":"%ssid%"}
-{"page":4,"id":8,"obj":"label","x":20,"y":115,"w":100,"h":20,"text":"Model:"}
-{"page":4,"id":9,"obj":"label","x":120,"y":115,"w":100,"h":20,"text":"%model%"}
-{"page":4,"id":10,"obj":"label","x":20,"y":140,"w":100,"h":20,"text":"Version:"}
-{"page":4,"id":11,"obj":"label","x":120,"y":140,"w":100,"h":20,"text":"%version%"}
-{"page":4,"id":12,"obj":"label","x":20,"y":165,"w":100,"h":20,"text":"Temperatur:"}
-{"page":4,"id":13,"obj":"label","x":120,"y":165,"w":100,"h":20,"text":""}
-{"page":4,"id":14,"obj":"label","x":20,"y":190,"w":100,"h":20,"text":"Uptime:"}
-{"page":4,"id":15,"obj":"label","x":120,"y":190,"w":100,"h":20,"text":""}
+{"page":4,"id":1,"obj":"btn","x":0,"y":0,"w":240,"h":30,"text":"STATUS","text_font":16,"bg_color":"#34495E","bg_grad_color":"#29A6DE","bg_grad_dir":1,"text_color":"#FFFFFF","radius":0,"border_side":0,"click":0}
+{"page":4,"id":2,"obj":"obj","x":5,"y":35,"w":230,"h":250,"click":0}
+{"page":4,"id":3,"obj":"tabview","x":0,"y":0,"w":240,"h":260,"parentid":2,"btn_pos":0,"bg_opa":0,"border_width":0}
+{"page":4,"id":4,"obj":"label","x":20,"y":40,"w":100,"h":20,"text":"IP:"}
+{"page":4,"id":5,"obj":"label","x":120,"y":40,"w":100,"h":20,"text":"%ip%"}
+{"page":4,"id":6,"obj":"label","x":20,"y":65,"w":100,"h":20,"text":"Hostname:"}
+{"page":4,"id":7,"obj":"label","x":120,"y":65,"w":100,"h":20,"text":"%hostname%"}
+{"page":4,"id":8,"obj":"label","x":20,"y":90,"w":100,"h":20,"text":"SSID:"}
+{"page":4,"id":9,"obj":"label","x":120,"y":90,"w":100,"h":20,"text":"%ssid%"}
+{"page":4,"id":10,"obj":"label","x":20,"y":115,"w":100,"h":20,"text":"Model:"}
+{"page":4,"id":11,"obj":"label","x":120,"y":115,"w":100,"h":20,"text":"%model%"}
+{"page":4,"id":12,"obj":"label","x":20,"y":140,"w":100,"h":20,"text":"Version:"}
+{"page":4,"id":13,"obj":"label","x":120,"y":140,"w":100,"h":20,"text":"%version%"}
+{"page":4,"id":14,"obj":"label","x":20,"y":165,"w":100,"h":20,"text":"Temperatur:"}
+{"page":4,"id":15,"obj":"label","x":120,"y":165,"w":100,"h":20,"text":""}
+{"page":4,"id":16,"obj":"label","x":20,"y":190,"w":100,"h":20,"text":"Uptime:"}
+{"page":4,"id":17,"obj":"label","x":120,"y":190,"w":100,"h":20,"text":""}
 
 {"page":0,"comment":"---------- All pages ----------"}
 {"page":0,"id":1,"obj":"btn","action":"prev","x":0,"y":290,"w":79,"h":32,"bg_color":"#29A6DE","bg_grad_color":"#34495E","text":"\uE141","text_color":"#FFFFFF","radius":0,"border_side":0,"text_font":32}
