@@ -4,7 +4,8 @@
 ![page2_1](https://user-images.githubusercontent.com/19539650/134803817-7ccf72c4-9f3f-4424-a586-bab6273c232d.png)
 ![page2_2](https://user-images.githubusercontent.com/19539650/134803816-bfcc5934-af8d-4ead-a68f-9c5bec7cef51.png)
 ![page3](https://user-images.githubusercontent.com/19539650/134803815-c16a5e9f-84d0-4f33-b1e7-6faf099be6f9.png)
-![page4](https://user-images.githubusercontent.com/19539650/134803814-273313ad-9819-47a0-a6e2-b59fdedc6e58.png)
+![page4](https://user-images.githubusercontent.com/19539650/134803858-638fd9c8-63e3-423a-a2bb-7713b4db0b6a.png)
+
 
 # openHASP_demo
 Demo for openHASP config in OpenHab
