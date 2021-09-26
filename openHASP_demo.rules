@@ -64,7 +64,7 @@ rule "openHASP Bad CHANNEL TRIGGERED"
                     {
                         switch(eventbutton)
                         {
-                            case '11':
+                            case '13':
                             {
                                 if(jsonkey == "event" && jsonvalue == "UP")
                                 {
@@ -76,10 +76,10 @@ rule "openHASP Bad CHANNEL TRIGGERED"
                                         onkyo_zone2_Power.sendCommand(OFF)
                                         stat = "OFF"
                                     }
-                                    openHASP_Plate_Command_JSON.sendCommand("[''p1b10.value_str=" + stat + "']")
+                                    openHASP_Plate_Command_JSON.sendCommand("[''p1b12.value_str=" + stat + "']")
                                 }
                             }
-                            case '13':
+                            case '15':
                             {
                                 if(jsonkey == "event" && jsonvalue == "UP")
                                 {
@@ -95,20 +95,20 @@ rule "openHASP Bad CHANNEL TRIGGERED"
                                     // openHASP_Plate_Command_JSON.sendCommand("['p1b10.text=Source " + stat + "']")
                                 }
                             }
-                            case '15':
+                            case '17':
                             {
                                 if(jsonkey == "event" && jsonvalue == "UP")
                                 {
                                     VirtualleiserOG_Zone2.sendCommand(ON)
-                                    openHASP_Plate_Command_JSON.sendCommand("['p1b14.value_str=" + onkyo_zone2_Volume.state + "']")
+                                    openHASP_Plate_Command_JSON.sendCommand("['p1b16.value_str=" + onkyo_zone2_Volume.state + "']")
                                 }
                             }
-                            case '16':
+                            case '18':
                             {
                                 if(jsonkey == "event" && jsonvalue == "UP")
                                 {
                                     VirtuallauterOG_Zone2.sendCommand(ON)
-                                    openHASP_Plate_Command_JSON.sendCommand("['p1b14.value_str=" + onkyo_zone2_Volume.state + "']")
+                                    openHASP_Plate_Command_JSON.sendCommand("['p1b16.value_str=" + onkyo_zone2_Volume.state + "']")
                                 }
                             }
                         }
@@ -116,7 +116,7 @@ rule "openHASP Bad CHANNEL TRIGGERED"
                     case '3':   // Colorpicker Button ID
                         switch(eventbutton)
                         {
-                            case '2':   // Colorpicker Button ID
+                            case '4':   // Colorpicker Button ID
                             {
                                 if(jsonkey == "event" && jsonvalue == "UP")
                                 {
@@ -125,7 +125,7 @@ rule "openHASP Bad CHANNEL TRIGGERED"
                                     openHASP_Plate_Command_JSON.sendCommand("['moodlight " + moodlight + "']")
                                 }
                             }
-                            case '3':
+                            case '5':
                             {
                                 if(jsonkey == "event" && jsonvalue == "UP")
                                 {
@@ -141,7 +141,7 @@ rule "openHASP Bad CHANNEL TRIGGERED"
 
 /* PAGE 1 */
 
-rule "openHASP Bad Page 1 Temperature Update"
+rule "openHASP Page 1 Temperature Update"
 when
     Item og_temp_bad_ist_aqara received update or
     Item openHASP_Plate_Page_Current received update 1 or
@@ -149,11 +149,11 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
     {
-        openHASP_Plate_Command_JSON.sendCommand("['p1b4.value_str=" + og_temp_bad_ist_aqara.state.format("%.1f") + "','p1b4.val=" + og_temp_bad_ist_aqara.state.format("%.1f") + "']")
+        openHASP_Plate_Command_JSON.sendCommand("['p1b6.value_str=" + og_temp_bad_ist_aqara.state.format("%.1f") + "','p1b6.val=" + og_temp_bad_ist_aqara.state.format("%.1f") + "']")
     }
 end
 
-rule "openHASP Bad Page 1 Humidity Update"
+rule "openHASP Page 1 Humidity Update"
 when
     Item og_humid_bad_ist received update or
     Item openHASP_Plate_Page_Current received update 1 or
@@ -161,11 +161,11 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
     {
-        openHASP_Plate_Command_JSON.sendCommand("['p1b5.value_str=" + og_humid_bad_ist.state.format("%.1f") + "','p1b5.val=" + og_humid_bad_ist.state.format("%.1f") + "']")
+        openHASP_Plate_Command_JSON.sendCommand("['p1b7.value_str=" + og_humid_bad_ist.state.format("%.1f") + "','p1b7.val=" + og_humid_bad_ist.state.format("%.1f") + "']")
     }
 end
 
-rule "openHASP Bad Page 1 Receiver Update"
+rule "openHASP Page 1 Receiver Update"
 when
     Item onkyo_zone2_Power received update or
     Item openHASP_Plate_Page_Current received update 1 or
@@ -175,16 +175,16 @@ then
     {
             if (onkyo_zone2_Power.state == ON) 
                 {
-                    openHASP_Plate_Command_JSON.sendCommand("['p1b11.val=" + 1 + "','p1b10.value_str=ON']")
+                    openHASP_Plate_Command_JSON.sendCommand("['p1b13.val=" + 1 + "','p1b12.value_str=ON']")
                 }
             else
                 {
-                    openHASP_Plate_Command_JSON.sendCommand("['p1b11.val=" + 0 + "','p1b10.value_str=OFF']")
+                    openHASP_Plate_Command_JSON.sendCommand("['p1b13.val=" + 0 + "','p1b12.value_str=OFF']")
                 }
     }
 end
 
-rule "openHASP Bad Page 1 Source Update"
+rule "openHASP Page 1 Source Update"
 when
     Item onkyo_zone2_Input received update or
     Item openHASP_Plate_Page_Current received update 1 or
@@ -194,16 +194,16 @@ then
     {
             if (onkyo_zone2_Input.state == 36) 
                 {
-                    openHASP_Plate_Command_JSON.sendCommand("['p1b13.val=0','p1b12.value_str=TUNER']")
+                    openHASP_Plate_Command_JSON.sendCommand("['p1b15.val=0','p1b14.value_str=TUNER']")
                 }
             else
                 {
-                    openHASP_Plate_Command_JSON.sendCommand("['p1b13.val=1','p1b12.value_str=PC']")
+                    openHASP_Plate_Command_JSON.sendCommand("['p1b15.val=1','p1b14.value_str=PC']")
                 }
     }
 end
 
-rule "openHASP Bad Page 1 Volume Update"
+rule "openHASP Page 1 Volume Update"
 when
     Item onkyo_zone2_Volume received update or
     Item openHASP_Plate_Page_Current received update 1 or
@@ -211,11 +211,11 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
     {
-        openHASP_Plate_Command_JSON.sendCommand("['p1b14.value_str=" + onkyo_zone2_Volume.state + "']")
+        openHASP_Plate_Command_JSON.sendCommand("['p1b16.value_str=" + onkyo_zone2_Volume.state + "']")
     }
 end
 
-rule "openHASP Bad Page 1 Weather Update"
+rule "openHASP Page 1 Weather Update"
 when
     Item localCurrentCondition received update or
     Item openHASP_Plate_Page_Current received update 1 or
@@ -223,7 +223,7 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
     {
-        openHASP_Plate_Command_JSON.sendCommand("['p1b6.text=Wetter: " + localCurrentCondition.state + "']")
+        openHASP_Plate_Command_JSON.sendCommand("['p1b8.text=Wetter: " + localCurrentCondition.state + "']")
     }
 end
 
@@ -349,7 +349,7 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 4)   //Only update page if you're on page 4 (avoid sending too many MQTT messages)
     {
-        openHASP_Plate_Command_JSON.sendCommand("['p4b13.text=" + openHASP_Plate_Temperature.state + "°C']")
+        openHASP_Plate_Command_JSON.sendCommand("['p4b15.text=" + openHASP_Plate_Temperature.state + "°C']")
     }
 end
 
@@ -361,11 +361,11 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 4)   //Only update page if you're on page 4 (avoid sending too many MQTT messages)
     {
-        openHASP_Plate_Command_JSON.sendCommand("['p4b15.text=" + openHASP_Plate_Uptime.state + "']")
+        openHASP_Plate_Command_JSON.sendCommand("['p4b17.text=" + openHASP_Plate_Uptime.state + "']")
     }
 end
 
-/* RSSI STATUS ICON */
+/* RSSI STATUS ICON UPDATE */
 
 rule "openHASP Status RSSI Icon Update"
 when
@@ -374,21 +374,21 @@ when
 then
     if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
     {   
-        var green ='["p1b3.text_color=green"]'
-        var orange ='["p1b3.text_color=orange"]'
-        var red ='["p1b3.text_color=red"]'
-
-        if(openHASP_Plate_SignalStrength.state <= -50 || openHASP_Plate_SignalStrength.state >= -0)
+        if (openHASP_Plate_SignalStrength.state <= -30)
             {
-                openHASP_Plate_Command_JSON.sendCommand(green)
+                openHASP_Plate_Command_JSON.sendCommand('["p1b5.text_color=green"]')
             }
-        if(openHASP_Plate_SignalStrength.state <= -50 || openHASP_Plate_SignalStrength.state >= -80)
+        if ((openHASP_Plate_SignalStrength.state > -31)  || (openHASP_Plate_SignalStrength.state >= -60))
             {
-                openHASP_Plate_Command_JSON.sendCommand(orange)
+                openHASP_Plate_Command_JSON.sendCommand('["p1b5.text_color=orange"]')
             }
-        if(openHASP_Plate_SignalStrength.state <= -80)
+        if ((openHASP_Plate_SignalStrength.state > -61)  || (openHASP_Plate_SignalStrength.state >= -80))
             {
-                openHASP_Plate_Command_JSON.sendCommand(red)
+                openHASP_Plate_Command_JSON.sendCommand('["p1b5.text_color=tomato"]')
+            }
+        else
+            {
+                openHASP_Plate_Command_JSON.sendCommand('["p1b5.text_color=red"]')
             }
     }
 end
@@ -403,7 +403,7 @@ then
     if (openHASP_Plate_Page_Current.state == 1)   //Only update page if you're on page 1 (avoid sending too many MQTT messages)
     // if (openHASP_Plate_Idle.state == 'off' && openHASP_Plate_Idle.state == 'short') //Only update if plate is in long idle status
     {   
-        openHASP_Plate_Command_JSON.sendCommand("['p1b2.text=" + openHASP_Date_Time.state.format("%1$tH:%1$tM") + "']")
+        openHASP_Plate_Command_JSON.sendCommand("['p1b4.text=" + openHASP_Date_Time.state.format("%1$tH:%1$tM") + "']")
     }
 end
 
@@ -415,8 +415,9 @@ rule "openHASP Display Backlight DIM on idle, return to Page 1 and Screensaver"
     then
         var idleday = '{"state":"on","brightness":10}'
         var idlenight = '{"page":0,"id":99,"obj":"obj","x":0,"y":0,"w":240,"h":320,"radius":0,"hidden":0,"bg_grad_dir":0,"bg_color":"black"}'
-        var Number hour = now.getHour	
-            if ((hour >= 0)  || (hour <= 6)) {
+        //var Number hour = now.getHour	
+            // if ((hour >= 0)  || (hour <= 6)) {
+            if(now.plusHours(4).now.getHour() > 11) { //this is 6am to 10pm aka 06:00 to 22:00
                 openHASP_Plate_Page_Current.sendCommand("1")   
                 openHASP_Plate_Command_JSON.sendCommand("['backlight " + idleday +"']")
             }
@@ -432,8 +433,7 @@ rule "openHASP Display Backlight DIM off"
         Item openHASP_Plate_Idle received update off
     then
         var idleoff = '{"state":"on","brightness":255}'
-        var Number hour = now.getHour
-            if ((hour >= 0)  || (hour <= 6)) {
+            if(now.plusHours(4).now.getHour() > 11) {
                 openHASP_Plate_Command_JSON.sendCommand("['backlight " + idleoff +"']")
             }
             else    {
